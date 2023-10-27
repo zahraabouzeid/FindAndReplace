@@ -26,9 +26,9 @@ def find_and_replace(_to_replace, _replace_with, _file_type, _directory_path, _w
                     print(f"Error processing {file_name}: {e}")
 
 if __name__ == "__main__":
-    find_and_replace(_to_replace=""
+    find_and_replace(_to_replace="",
                      _replace_with="",
-                     _file_types"*.pas",
+                     _file_type="*.pas",
                      _directory_path="D:/DelphiXE/FW",
                      _with _regular_expressions=True,
                      _search_only-False)
