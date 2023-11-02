@@ -11,7 +11,8 @@ def find_and_replace(_to_replace, _replace_with, _file_type, _directory_path, _w
                 try:
                     with open(file_path, 'r', encoding="utf8") as file:
                         base = file.read()
-                        pattern_not_found = (re.search(_to_replace, base) is None)
+                        if _with_regular_expressions:
+                            pattern_not_found = (re.search(_to_replace, base) is None)
                         if ((not (_to_replace in base)) and (not _with_regular_expressions)) or (_with_regular_expressions and pattern_not_found):
                             continue
                         print (f"Changes occured in {file_name}")
