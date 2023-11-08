@@ -13,8 +13,8 @@ def find_and_replace(_to_replace, _replace_with, _file_type, _directory_path, _w
                         base = file.read()
                         occurrences = base.count(_to_replace)
                         if _with_regular_expressions:
-                            pattern_not_found = (re.search(_to_replace, base) is None)
-                        if ((occurrences == 0) and (not _with_regular_expressions)) or (_with_regular_expressions and pattern_not_found):
+                            occurrences = len(re.findall(_to_replace, base))
+                        if occurrences == 0:
                             continue
                         print (f"Occurences in {file_name}: {occurrences}")
                         total += 1
