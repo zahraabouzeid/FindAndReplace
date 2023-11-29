@@ -1,8 +1,10 @@
 import os 
 import re
+import shutil
 from fnmatch import fnmatch
 
-def find_and_replace(_to_replace, _replace_with, _file_type, _directory_path, _with_regular_expressions, _search_only):
+def find_and_replace(_to_replace, _replace_with, _file_type, _directory_path, 
+                    _with_regular_expressions, _search_only, _copy_files, _destination_path):
     total = 0
     for _directory_path, subdirectories, files in os.walk(_directory_path):
         for file_name in files:
@@ -17,6 +19,8 @@ def find_and_replace(_to_replace, _replace_with, _file_type, _directory_path, _w
                         if occurrences == 0:
                             continue
                         print (f"Occurences in {file_name}: {occurrences}")
+                        if  _copy_files:
+                            shutil.copy(file_path, os.path.join(_destination_path, file_name))
                         total += 1
                     if not _search_only:
                         with open(file_path, 'w', encoding="utf8") as file:
@@ -36,4 +40,6 @@ if __name__ == "__main__":
                      _file_type="*.pas",
                      _directory_path="D:/DelphiXE/FW",
                      _with_regular_expressions=False,
-                     _search_only=False)
+                     _search_only=False,
+					 _copy_files=True,
+					 _destination_path="D:/DelphiXE")
